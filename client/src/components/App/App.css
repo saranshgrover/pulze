@@ -1,0 +1,62 @@
+._scrollable {
+	overflow-y: auto;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	width: 100%;
+	height: 100%;
+}
+._scrollable::-webkit-scrollbar {
+	background: none;
+	width: 15px;
+	height: 15px;
+}
+._scrollable::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.15);
+	border-radius: 15px;
+}
+._scrollable::-webkit-scrollbar-thumb {
+	border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+._scrollable::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+._scrollable::-webkit-scrollbar-corner {
+	background-color: rgba(0, 0, 0, 0);
+}
+._scrollable.little::-webkit-scrollbar {
+	background: none;
+	width: 7.5px;
+	height: 7.5px;
+}
+._scrollable.little::-webkit-scrollbar-track {
+	border-radius: 15px/2;
+}
+._scrollable.little::-webkit-scrollbar-thumb {
+	border-radius: 15px/2;
+}
+._scrollable.autoHideScrollbar {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+._scrollable.autoHideScrollbar:hover {
+	overflow-y: scroll;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+._scrollable.autoHideScrollbar:hover.only-y {
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+}
+._scrollable.autoHideScrollbar:hover.only-x {
+	overflow-x: auto !important;
+	overflow-y: hidden !important;
+}
+._scrollable.only-y:not(.autoHideScrollbar) {
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+}
+._scrollable.only-x:not(.autoHideScrollbar) {
+	overflow-x: autIo !important;
+	overflow-y: hidden !important;
+}

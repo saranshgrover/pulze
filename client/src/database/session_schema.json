@@ -1,0 +1,370 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"Timer.EventId": {
+			"enum": [
+				"222",
+				"333",
+				"444",
+				"555",
+				"666",
+				"777",
+				"clock",
+				"minx",
+				"pyram",
+				"skewb",
+				"sq1"
+			],
+			"type": "string"
+		},
+		"Timer.PuzzleMethod": {
+			"anyOf": [
+				{
+					"enum": ["CFOP"],
+					"type": "string"
+				},
+				{
+					"enum": ["Roux"],
+					"type": "string"
+				},
+				{
+					"enum": ["ZZ"],
+					"type": "string"
+				},
+				{
+					"not": {}
+				}
+			]
+		},
+		"Timer.Session": {
+			"additionalProperties": false,
+			"properties": {
+				"best": {
+					"$ref": "#/definitions/Timer.Stats"
+				},
+				"current": {
+					"$ref": "#/definitions/Timer.Stats"
+				},
+				"eventId": {
+					"$ref": "#/definitions/Timer.EventId"
+				},
+				"id": {
+					"type": "string"
+				},
+				"mean": {
+					"type": "number"
+				},
+				"numberOfSolves": {
+					"type": "number"
+				},
+				"solveMap": {
+					"$ref": "#/definitions/Timer.SolveMap"
+				},
+				"solves": {
+					"additionalProperties": {
+						"$ref": "#/definitions/Timer.Solve"
+					},
+					"type": "object"
+				},
+				"subsetId": {
+					"enum": [
+						"2gll",
+						"ble",
+						"cls",
+						"cmll",
+						"edges",
+						"fmc",
+						"lccp",
+						"ll",
+						"lsll",
+						"lu",
+						"nls",
+						"pll",
+						"wv",
+						"zz",
+						"tsle",
+						"zzle",
+						"zzlsll"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"numberOfSolves",
+				"mean",
+				"eventId",
+				"solves",
+				"solveMap",
+				"current",
+				"best"
+			],
+			"type": "object"
+		},
+		"Timer.Solution": {
+			"additionalProperties": false,
+			"properties": {
+				"method": {
+					"enum": ["CFOP", "Roux", "ZZ"],
+					"type": "string"
+				},
+				"reconstruction": {
+					"type": "string"
+				}
+			},
+			"required": ["reconstruction"],
+			"type": "object"
+		},
+		"Timer.Solve": {
+			"additionalProperties": false,
+			"properties": {
+				"eventId": {
+					"$ref": "#/definitions/Timer.EventId"
+				},
+				"notes": {
+					"type": "string"
+				},
+				"penalty": {
+					"$ref": "#/definitions/Timer.TimerPenalty"
+				},
+				"scramble": {
+					"type": "string"
+				},
+				"sessionId": {
+					"type": "string"
+				},
+				"solution": {
+					"$ref": "#/definitions/Timer.Solution"
+				},
+				"subsetId": {
+					"enum": [
+						"2gll",
+						"ble",
+						"cls",
+						"cmll",
+						"edges",
+						"fmc",
+						"lccp",
+						"ll",
+						"lsll",
+						"lu",
+						"nls",
+						"pll",
+						"wv",
+						"zz",
+						"tsle",
+						"zzle",
+						"zzlsll"
+					],
+					"type": "string"
+				},
+				"time": {
+					"type": "number"
+				},
+				"uid": {
+					"type": "string"
+				}
+			},
+			"required": ["time", "scramble", "sessionId", "eventId", "uid"],
+			"type": "object"
+		},
+		"Timer.SolveMap": {
+			"additionalProperties": false,
+			"properties": {
+				"size": {
+					"type": "number"
+				}
+			},
+			"required": ["size"],
+			"type": "object"
+		},
+		"Timer.SolveRecord": {
+			"additionalProperties": false,
+			"properties": {
+				"numberOfSolves": {
+					"type": "number"
+				},
+				"startSolve": {
+					"$ref": "#/definitions/Timer.Solve"
+				},
+				"time": {
+					"type": "number"
+				}
+			},
+			"required": ["time", "startSolve", "numberOfSolves"],
+			"type": "object"
+		},
+		"Timer.Stats": {
+			"additionalProperties": false,
+			"properties": {
+				"ao100": {
+					"$ref": "#/definitions/Timer.SolveRecord"
+				},
+				"ao12": {
+					"$ref": "#/definitions/Timer.SolveRecord"
+				},
+				"ao5": {
+					"$ref": "#/definitions/Timer.SolveRecord"
+				},
+				"ao50": {
+					"$ref": "#/definitions/Timer.SolveRecord"
+				},
+				"single": {
+					"$ref": "#/definitions/Timer.SolveRecord"
+				}
+			},
+			"type": "object"
+		},
+		"Timer.TimerPenalty": {
+			"additionalProperties": false,
+			"properties": {
+				"amount": {
+					"type": "number"
+				},
+				"type": {
+					"enum": ["DNF", "DNS", "+2"],
+					"type": "string"
+				}
+			},
+			"required": ["type"],
+			"type": "object"
+		},
+		"Timer.TimerSettings": {
+			"additionalProperties": false,
+			"properties": {
+				"inspection": {
+					"enum": ["always", "never", "nonbld"],
+					"type": "string"
+				},
+				"layout": {
+					"enum": ["drawer", "divider3", "divider2", "simple"],
+					"type": "string"
+				},
+				"timeToRelease": {
+					"$ref": "#/definitions/Timer.timeToRelease"
+				},
+				"timerInput": {
+					"enum": ["manual", "timer", "stackmat"],
+					"type": "string"
+				},
+				"timerUpdate": {
+					"$ref": "#/definitions/Timer.timerUpdate"
+				}
+			},
+			"required": [
+				"layout",
+				"timerInput",
+				"inspection",
+				"timerUpdate",
+				"timeToRelease"
+			],
+			"type": "object"
+		},
+		"Timer.subsetId": {
+			"anyOf": [
+				{
+					"enum": ["2gll"],
+					"type": "string"
+				},
+				{
+					"enum": ["ble"],
+					"type": "string"
+				},
+				{
+					"enum": ["cls"],
+					"type": "string"
+				},
+				{
+					"enum": ["cmll"],
+					"type": "string"
+				},
+				{
+					"enum": ["edges"],
+					"type": "string"
+				},
+				{
+					"enum": ["fmc"],
+					"type": "string"
+				},
+				{
+					"enum": ["lccp"],
+					"type": "string"
+				},
+				{
+					"enum": ["ll"],
+					"type": "string"
+				},
+				{
+					"enum": ["lsll"],
+					"type": "string"
+				},
+				{
+					"enum": ["lu"],
+					"type": "string"
+				},
+				{
+					"enum": ["nls"],
+					"type": "string"
+				},
+				{
+					"enum": ["pll"],
+					"type": "string"
+				},
+				{
+					"enum": ["wv"],
+					"type": "string"
+				},
+				{
+					"enum": ["zz"],
+					"type": "string"
+				},
+				{
+					"enum": ["tsle"],
+					"type": "string"
+				},
+				{
+					"enum": ["zzle"],
+					"type": "string"
+				},
+				{
+					"enum": ["zzlsll"],
+					"type": "string"
+				},
+				{
+					"not": {}
+				}
+			]
+		},
+		"Timer.timeToRelease": {
+			"enum": ["none", "stackmat"],
+			"type": "string"
+		},
+		"Timer.timerUpdate": {
+			"anyOf": [
+				{
+					"enum": ["deciseconds"],
+					"type": "string"
+				},
+				{
+					"enum": ["seconds"],
+					"type": "string"
+				},
+				{
+					"enum": ["centiseconds"],
+					"type": "string"
+				},
+				{
+					"enum": ["milliseconds"],
+					"type": "string"
+				},
+				{
+					"enum": ["none"],
+					"type": "string"
+				},
+				{
+					"type": "number"
+				}
+			]
+		}
+	}
+}
