@@ -12120,10 +12120,10 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-keyboard-timer@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/use-keyboard-timer/-/use-keyboard-timer-0.1.0.tgz#8822b74fd1c45429fb44eac63f65b96c1d5c7200"
-  integrity sha512-Ym5hVo/pd58XGSCVGcW18qutShKOcxKw5RVS1LDLhLm2gXP1AQHKWSsioirTEGHAlfYtIEKuUoC3clcFmZ5LYA==
+use-keyboard-timer@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/use-keyboard-timer/-/use-keyboard-timer-0.2.0.tgz#8997031d4d877cfa6298172aaf47ccbc631550c0"
+  integrity sha512-TCvhtd/XlGfA7ulpUT+xWvs1LfuivYgUttrx1VxIkKP/EBhf6VNLsV7DrGJ4O9rHDkzlg5YAV5PAyuoRNkFMsw==
 
 use@^3.1.0:
   version "3.1.1"

@@ -55,13 +55,15 @@ export default function TimerDBProvider({
 	useEffect(() => {
 		async function initialize() {
 			const sessions = await timerDB.getSessions()
+			const username =
+				localStorage.getItem('timerDBUsername') ??
+				process.env.REACT_APP_timerDBUsername!
+			const password =
+				localStorage.getItem('timerDBPassword') ??
+				process.env.REACT_APP_timerDBPassword!
 			timerDB.startSync({
-				username:
-					localStorage.getItem('timerDBUsername') ??
-					process.env.timerDBUsername!,
-				password:
-					localStorage.getItem('timerDBPassword') ??
-					process.env.timerDBPassword!,
+				username,
+				password,
 			})
 		}
 		let unsubscribe: (() => void) | void = void initialize().then(

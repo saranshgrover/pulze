@@ -3,7 +3,7 @@ const defaultTimerSettings: Timer.TimerSettings = {
 	timerInput: 'timer',
 	inspection: 'always',
 	timerUpdate: 'deciseconds',
-	timeToRelease: 'none',
+	timeToRelease: 'stackmat',
 }
 
 export default defaultTimerSettings

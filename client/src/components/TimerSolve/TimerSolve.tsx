@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid'
 import ScrambleView from './ScrambleView'
 import Solver from './Solver'
 import { makeStyles, Theme } from '@material-ui/core'
-import useKeyboardTimer from '../../hooks/useKeyboardTimer'
+import useKeyboardTimer from 'use-keyboard-timer'
 import { TimerSettingsContext } from '../../providers/TimerSettingsProvider'
-import {useTimerDB} from '../../providers/TimerDBProvider'
+import { useTimerDB } from '../../providers/TimerDBProvider'
 
 const useStyles = makeStyles<Theme>((theme: Theme) => ({
 	root: {
@@ -27,7 +27,7 @@ interface Props {
 
 export default function TimerSolve({ width }: Props): ReactElement {
 	const { settings } = useContext(TimerSettingsContext)
-	const [,,{ addSolve }, { solve, newSolve }] = useTimerDB()
+	const [, , { addSolve }, { solve, newSolve }] = useTimerDB()
 	const onComplete = (
 		time: number,
 		penalty: Timer.TimerPenalty | undefined
@@ -53,8 +53,7 @@ export default function TimerSolve({ width }: Props): ReactElement {
 			justify='center'
 			alignItems='center'
 			alignContent='center'
-			wrap='nowrap'
-		>
+			wrap='nowrap'>
 			<Grid item style={{ width }}>
 				<ScrambleView scramble={solve?.scramble} />
 			</Grid>

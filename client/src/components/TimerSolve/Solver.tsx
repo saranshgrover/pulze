@@ -3,7 +3,7 @@ import Inspection from '../Inspection/Inspection'
 import Timing from '../Timing/Timing'
 import { useSession } from '../../providers/SessionProvider'
 import { TimerSettingsContext } from '../../providers/TimerSettingsProvider'
-import { KeyboardTimer } from '../../hooks/useKeyboardTimer'
+import { KeyboardTimer } from 'use-keyboard-timer/dist/useKeyboardTimer'
 
 interface Props {
 	timer: KeyboardTimer
