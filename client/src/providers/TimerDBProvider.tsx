@@ -56,8 +56,12 @@ export default function TimerDBProvider({
 		async function initialize() {
 			const sessions = await timerDB.getSessions()
 			timerDB.startSync({
-				username: process.env.timerDBUsername!,
-				password: process.env.timerTBPassword!,
+				username:
+					localStorage.getItem('timerDBUsername') ??
+					process.env.timerDBUsername!,
+				password:
+					localStorage.getItem('timerDBPassword') ??
+					process.env.timerDBPassword!,
 			})
 		}
 		let unsubscribe: (() => void) | void = void initialize().then(
